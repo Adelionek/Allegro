@@ -9,6 +9,13 @@
 <h3>X: {{ arguments['X'] }}</h3>
 <h3>Y: {{ arguments['Y'] }}</h3>
 <h3>zdjecia: {{ urls[0] }}</h3>
+<h3>ile: {{ arguments['ile'] }}</h3>
+
+<p>
+    {% for image in urls %}
+        <img src={{ image }} >
+    {% endfor %}
+</p>
 
 </body>
 </html>

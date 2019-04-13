@@ -1,4 +1,4 @@
-from app import app
+from app import app, mosaic
 from flask import request, render_template
 
 
@@ -9,20 +9,29 @@ def base_page():
 
 @app.route('/mozaika')
 def mozaika():
-
-    arguments = {}
-    urls = []
     if request.args.get('losowo') is not None:
         randomly = request.args.get('losowo')
-        arguments['losowo'] = randomly
+        mosaic.arguments['losowo'] = randomly
     if request.args.get('rozdzielczosc') is not None:
         resolution = request.args.get('rozdzielczosc')
         resolution_args = resolution.split("x")
-        arguments['X'] = resolution_args[0]
-        arguments['Y'] = resolution_args[1]
+        mosaic.arguments['X'] = resolution_args[0]
+        mosaic.arguments['Y'] = resolution_args[1]
+    else:
+        mosaic.arguments['X'] = 2048
+        mosaic.arguments['Y'] = 2048
 
     images = request.args.get('zdjecia')
-    urls.append(images)
+    if images is None:
+        mosaic.arguments['ile'] = 0
+        return render_template('errorpage.html', ile=mosaic.arguments['ile'])
 
+    mosaic.urls = images.split(',')
+    mosaic.arguments['ile'] = len(mosaic.urls)
 
-    return render_template('base.html', arguments=arguments, urls=urls)
+    if(mosaic.arguments['ile']) > 8:
+        return render_template('errorpage.html', ile=mosaic.arguments['ile'])
+
+    mosaic.save_images()
+
+    return render_template('base.html', arguments=mosaic.arguments, urls=mosaic.urls)
