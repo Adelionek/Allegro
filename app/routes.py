@@ -4,7 +4,7 @@ from flask import request, render_template
 
 @app.route('/')
 def base_page():
-    return "Hello"
+    return 'Hello'
 
 
 @app.route('/mozaika')

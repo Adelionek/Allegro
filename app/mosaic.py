@@ -1,16 +1,18 @@
 import math
 import requests
-import os, shutil
+import os
 from PIL import Image
 
 arguments = {}
 urls = []
+cwd = os.getcwd()
+result_path = os.path.join(cwd, 'static', 'result_photo.jpg')
 
 
 def save_images():
     for i in range(arguments['ile']):
         url = requests.get(urls[i])
-        with open('temp//zdj_%d.jpeg' % i, 'wb') as f:
+        with open(os.path.join(cwd, 'temp\\zdj_%d.jpeg' % i), 'wb') as f:
             f.write(url.content)
 
 
@@ -37,22 +39,20 @@ def mozaika():
         if ile % 2 == 1 and index == ile-1:
             width = int(size[0])
             resized = img.resize((size[0], height), Image.ANTIALIAS)
-            print('dziala')
         print(resized.size)
         x = index % 2 * width
         y = index//2 * height
         print('pos {0},{1} size {2},{3}'.format(x, y, width, height))
         result.paste(resized, (x, y, x + width, y + height))
 
-    cwd = os.getcwd()
-    result.save(os.path.join(cwd, 'image.jpg'))
+    result.save(result_path)
 
-    print(os.path.join(cwd, 'image.jpg'))
+    print(result_path)
     print(ile)
 
 
 def delete_files():
-    folder = os.path.join(os.getcwd(),'temp')
+    folder = os.path.join(os.getcwd(), 'temp')
     for file in os.listdir(folder):
         file_path = os.path.join(folder, file)
         try:
@@ -60,3 +60,4 @@ def delete_files():
                 os.unlink(file_path)
         except Exception as e:
             print(e)
+
