@@ -33,5 +33,7 @@ def mozaika():
         return render_template('errorpage.html', ile=mosaic.arguments['ile'])
 
     mosaic.save_images()
+    mosaic.mozaika()
+    mosaic.delete_files()
 
     return render_template('base.html', arguments=mosaic.arguments, urls=mosaic.urls)
