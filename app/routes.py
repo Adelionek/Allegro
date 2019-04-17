@@ -12,6 +12,9 @@ def mozaika():
     if request.args.get('losowo') is not None:
         randomly = request.args.get('losowo')
         mosaic.arguments['losowo'] = randomly
+    else:
+        mosaic.arguments['losowo'] = 0
+
     if request.args.get('rozdzielczosc') is not None:
         resolution = request.args.get('rozdzielczosc')
         resolution_args = resolution.split("x")
@@ -32,8 +35,8 @@ def mozaika():
     if(mosaic.arguments['ile']) > 8:
         return render_template('errorpage.html', ile=mosaic.arguments['ile'])
 
+    mosaic.delete_temp_files()
     mosaic.save_images()
     mosaic.mozaika()
-    mosaic.delete_files()
 
-    return render_template('base.html', arguments=mosaic.arguments, urls=mosaic.urls)
+    return render_template('base.html', arguments=mosaic.arguments, urls=mosaic.urls, path=mosaic.result_path)

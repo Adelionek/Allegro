@@ -2,14 +2,21 @@ import math
 import requests
 import os
 from PIL import Image
+from random import shuffle
 
 arguments = {}
 urls = []
 cwd = os.getcwd()
-result_path = os.path.join(cwd, 'static', 'result_photo.jpg')
+result_path = os.path.join(cwd, 'app', 'static', 'result_photo.jpg')
 
 
 def save_images():
+    print(arguments['losowo'])
+
+    if arguments['losowo'] == '1':
+        print('dziala')
+        shuffle(urls)
+
     for i in range(arguments['ile']):
         url = requests.get(urls[i])
         with open(os.path.join(cwd, 'temp\\zdj_%d.jpeg' % i), 'wb') as f:
@@ -46,12 +53,11 @@ def mozaika():
         result.paste(resized, (x, y, x + width, y + height))
 
     result.save(result_path)
-
     print(result_path)
     print(ile)
 
 
-def delete_files():
+def delete_temp_files():
     folder = os.path.join(os.getcwd(), 'temp')
     for file in os.listdir(folder):
         file_path = os.path.join(folder, file)
@@ -60,4 +66,3 @@ def delete_files():
                 os.unlink(file_path)
         except Exception as e:
             print(e)
-
