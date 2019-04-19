@@ -1,5 +1,6 @@
 from app import app, mosaic
 from flask import request, render_template
+import time
 
 
 @app.route('/')
@@ -37,6 +38,7 @@ def mozaika():
 
     # mosaic.delete_temp_files()
     mosaic.save_images()
+    time.sleep(5)
     mosaic.mozaika()
 
     return render_template('base.html', arguments=mosaic.arguments, urls=mosaic.urls, path=mosaic.result_path)
