@@ -19,14 +19,14 @@ def save_images():
 
     for i in range(arguments['ile']):
         url = requests.get(urls[i])
-        with open(os.path.join(cwd, 'temp\\zdj_%d.jpeg' % i), 'wb') as f:
+        with open(os.path.join(cwd, 'app', 'static', 'temp', 'zdj_%d.jpeg' % i), 'wb') as f:
             f.write(url.content)
 
 
 def mozaika():
     files = []
 
-    for r, d, f in os.walk(".\\temp"):
+    for r, d, f in os.walk(os.path.join(cwd, 'app', 'static', 'temp')):
         for file in f:
             files.append(os.path.join(r, file))
 
@@ -58,7 +58,7 @@ def mozaika():
 
 
 def delete_temp_files():
-    folder = os.path.join(os.getcwd(), 'temp')
+    folder = os.path.join(cwd, 'app', 'static')
     for file in os.listdir(folder):
         file_path = os.path.join(folder, file)
         try:
