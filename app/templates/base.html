@@ -7,7 +7,7 @@
 </head>
 <body>
 <div>
-    <h2>Mozaika</h2>
+    <h2>MozaikaAAA</h2>
     <b>Podane argumenty:</b><br>
     losowo: {{ arguments['losowo'] }}<br>
     X: {{ arguments['X'] }}<br>
@@ -16,7 +16,8 @@
     {% for url in urls %}
                     {{ url }}<br>
                 {% endfor %}
-    Ilość adresów: {{ arguments['ile'] }}
+    Ilość adresów: {{ arguments['ile'] }}<br>
+    path: {{ path }}
 </div>
 <p>
 <img src="{{ url_for('static', filename='result_photo.jpeg') }}">
