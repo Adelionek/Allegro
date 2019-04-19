@@ -1,7 +1,4 @@
-from flask import Flask, send_from_directory
-import os
-
-cwd = os.getcwd()
+from flask import Flask
 
 app = Flask(__name__)
 

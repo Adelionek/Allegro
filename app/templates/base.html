@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}"
 </head>
 <body>
-<h3>losowo: {{ arguments['losowo'] }}</h3>
-<h3>X: {{ arguments['X'] }}</h3>
-<h3>Y: {{ arguments['Y'] }}</h3>
-<h3>zdjecia: {% for url in urls %}
-                {{ url }}<br>
-            {% endfor %}
-</h3>
-<h3>ile: {{ arguments['ile'] }}</h3>
-
+<div>
+    <h2>Mozaika</h2>
+    <b>Podane argumenty:</b><br>
+    losowo: {{ arguments['losowo'] }}<br>
+    X: {{ arguments['X'] }}<br>
+    Y: {{ arguments['Y'] }}<br><br>
+    <b>Adresy URL:</b><br>
+    {% for url in urls %}
+                    {{ url }}<br>
+                {% endfor %}
+    Ilość adresów: {{ arguments['ile'] }}
+</div>
 <p>
-<img src="{{ url_for('static', filename='result_photo.jpg') }}">
+<img src="{{ url_for('static', filename='result_photo.jpeg') }}">
 </p>
 
 </body>

@@ -7,7 +7,7 @@ from random import shuffle
 arguments = {}
 urls = []
 cwd = os.getcwd()
-result_path = os.path.join(cwd, 'app', 'static', 'result_photo.jpg')
+result_path = os.path.join(cwd, 'app', 'static', 'result_photo.jpeg')
 
 
 def save_images():
