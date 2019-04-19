@@ -36,7 +36,7 @@ def mozaika():
     if(mosaic.arguments['ile']) > 8:
         return render_template('errorpage.html', ile=mosaic.arguments['ile'])
 
-    # mosaic.delete_temp_files()
+    mosaic.delete_temp_files()
     mosaic.save_images()
     mosaic.mozaika()
 

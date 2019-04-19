@@ -58,7 +58,7 @@ def mozaika():
 
 
 def delete_temp_files():
-    folder = os.path.join(cwd, 'app', 'static')
+    folder = os.path.join(cwd, 'app', 'static', 'temp')
     for file in os.listdir(folder):
         file_path = os.path.join(folder, file)
         try:
